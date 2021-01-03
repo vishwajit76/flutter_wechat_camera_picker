@@ -419,9 +419,9 @@ class CameraPickerState extends State<CameraPicker> {
   Future<void> takePicture() async {
     if (isInitialized && !cameraController.value.isTakingPicture) {
       try {
-        final String path = '${cacheFilePath}_$currentTimeStamp.jpg';
-        await cameraController.takePicture(path);
-        takenPictureFilePath = path;
+        //final String path = '${cacheFilePath}_$currentTimeStamp.jpg';
+        XFile xfile = await cameraController.takePicture();
+        takenPictureFilePath = xfile.path;
 
         final AssetEntity entity = await CameraPickerViewer.pushToViewer(
           context,
@@ -490,10 +490,10 @@ class CameraPickerState extends State<CameraPicker> {
   /// Set record file path and start recording.
   /// 设置拍摄文件路径并开始录制视频
   void startRecordingVideo() {
-    final String filePath = '${cacheFilePath}_$currentTimeStamp.mp4';
-    takenVideoFilePath = filePath;
+    //final String filePath = '${cacheFilePath}_$currentTimeStamp.mp4';
+    //takenVideoFilePath = filePath;
     if (!cameraController.value.isRecordingVideo) {
-      cameraController.startVideoRecording(filePath).then((dynamic _) {
+      cameraController.startVideoRecording().then((dynamic _) {
         if (mounted) {
           setState(() {});
         }
@@ -518,7 +518,12 @@ class CameraPickerState extends State<CameraPicker> {
   /// 停止录制视频
   Future<void> stopRecordingVideo() async {
     if (cameraController.value.isRecordingVideo) {
-      cameraController.stopVideoRecording().then((dynamic result) async {
+      cameraController.stopVideoRecording().then((result) async {
+        
+        
+        XFile xfile = reslut;
+        takenVideoFilePath = xfile.path;
+        
         final AssetEntity entity = await CameraPickerViewer.pushToViewer(
           context,
           pickerState: this,
