@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  camera: ^0.5.8
+  camera: ^0.6.3+2
   device_info: ^1.0.0
   path_provider: ^1.6.24
   photo_manager: ^0.5.8
