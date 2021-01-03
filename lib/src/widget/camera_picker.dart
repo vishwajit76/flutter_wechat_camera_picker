@@ -521,7 +521,7 @@ class CameraPickerState extends State<CameraPicker> {
       cameraController.stopVideoRecording().then((result) async {
         
         
-        XFile xfile = reslut;
+        XFile xfile = result;
         takenVideoFilePath = xfile.path;
         
         final AssetEntity entity = await CameraPickerViewer.pushToViewer(
