@@ -204,9 +204,14 @@ class _CameraPickerViewerState extends State<CameraPickerViewer> {
 
       switch (pickerType) {
         case CameraPickerViewType.image:
-          final Uint8List data = await previewFile.readAsBytes();
-          saveFuture = PhotoManager.editor.saveImage(
-            data,
+          //final Uint8List data = await previewFile.readAsBytes();
+//           saveFuture = PhotoManager.editor.saveImage(
+//             data,
+//             title: previewFilePath,
+//           );
+          
+           saveFuture = PhotoManager.editor.saveImageWithPath(
+            previewFile.path,
             title: previewFilePath,
           );
           break;
